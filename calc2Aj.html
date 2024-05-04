@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calc</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+20+Charted&display=swap');
+        body{
+            background-color: #171918;
+            font-family: "Jersey 10", sans-serif;
+        }
+        .calc{
+            width: 60vw;
+            margin: 30px 20vw;
+            min-height: 20vw;
+            background-color: #3b4a47;
+            border-radius: 15px;
+            border: 6px double #002329;
+        }
+        .menu{
+            display: flex;
+            justify-content: space-around;
+            height: 5vw;
+            width: (100%);
+            padding: 15px 12px;
+        }
+        .sw{
+            max-height: 80%;
+            width: 30%;
+            background-color: #66807b;
+            border-radius: 4px 25px;
+            box-shadow: 3px 4px #2d3b38;
+            color: #caffbf;
+            font-size: 30px;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        .sw:hover{
+            background-color: #4d605c;
+            box-shadow: -3px -4px #2b3434;
+        }
+        .wnA{
+            min-height: 35vw;
+            width: (100%);
+            padding: 10px;
+            background-color: #2d3b38;
+            border-radius: 0 0 8px 8px;
+            border-top: 2px dashed #171918;
+        }
+    </style>
+</head>
+<body>
+    <div class="calc">
+        <div class="menu">
+            <div class="sw c1">Days elapsed</div>
+            <div class="sw c2">Day of the week</div>
+            <div class="sw c3">Day ahead</div>
+        </div>
+        <div class="wnA">
+        </div>
+    </div>
+    <script>
+        const sw1 = document.querySelector(".c1");
+        const sw2 = document.querySelector(".c2");
+        const sw3 = document.querySelector(".c3");
+        const screen = document.querySelector(".wnA");
+        window.onload = function(){
+            sw1.onclick = LoadC;
+            sw2.onclick = LoadC2;
+            sw3.onclick = LoadC3;
+        }
+        async function LoadC() 
+        {
+            let url= 'calc1.html';
+            let response = await fetch(url); 
+            if (response.ok) { 
+                let html = await response.text();  
+                screen.innerHTML = html;
+            }else {
+                alert("Ошибка HTTP: " + response.status);
+            }
+        }
+        async function LoadC2() 
+        {
+            let url= 'calc2.html';
+            let response = await fetch(url); 
+            if (response.ok) { 
+                let html = await response.text();  
+                screen.innerHTML = html;
+            }else {
+                alert("Ошибка HTTP: " + response.status);
+            }
+        }
+        async function LoadC3() 
+        {
+            let url= 'calc3.html';
+            let response = await fetch(url); 
+            if (response.ok) { 
+                let html = await response.text();  
+                screen.innerHTML = html;
+            }else {
+                alert("Ошибка HTTP: " + response.status);
+            }
+        }
+    </script>
+    <script>
+        function count2(){
+            let formOK = true;
+            let form = document.forms.calcA; 
+            let elem = form.elements.one;
+            let dayA = Number(form.elements.dayA.value); 
+            let yearA = Number(form.elements.yearA.value);
+            let monthA = form.elements.monthA.value; 
+            if (isNaN(dayA))
+            {
+                    formOK = false; 
+                    form.elements.dayA.classList.add("error");
+            }
+            if (isNaN(yearA))
+            {
+                    formOK = false; 
+                    form.elements.yearA.classList.add("error");
+            }
+            // if (dayA.toString().length != 2){
+            //     formOK = false; 
+            //     form.elements.percSrok.classList.add("error"); 
+            // }
+            // if(yearA.toString().length != 4){
+            //     formOK = false; 
+            //     form.elements.percSrok.classList.add("error"); 
+            // }
+            if(yearA>2024){
+                formOK = false; 
+                form.elements.percSrok.classList.add("error"); 
+            }
+            let monthB;
+            if (monthA=="J"){
+                monthb = 0;
+            }else if(monthA=="F"){
+                monthB = 1;
+            }else if(monthA=="M"){
+                monthB = 2;
+            }else if(monthA=="A"){
+                monthB = 3;
+            }else if(monthA=="Ma"){
+                monthB = 4;
+            }else if(monthA=="Jn"){
+                monthB = 5;
+            }else if(monthA=="Jl"){
+                monthB = 6;
+            }else if(monthA=="Ag"){
+                monthB = 7;
+            }else if(monthA=="S"){
+                monthB = 8;
+            }else if(monthA=="O"){
+                monthB = 9;
+            }else if(monthA=="N"){
+                monthB = 10;
+            }else if(monthA=="D"){
+                monthB = 11;
+            }
+            if(formOK){
+                let date = new Date(yearA,monthB,dayA);
+                let dateN = date.getDay();
+                let ans;
+                if (dateN == 1){
+                    ans = "Monday";
+                }else if (dateN == 2){
+                    ans = "Tuesday ";
+                }else if (dateN == 3){
+                    ans = "Wednesday ";
+                }else if (dateN == 4){
+                    ans = "Thursday";
+                }else if (dateN == 5){
+                    ans = "Friday";
+                }else if (dateN == 6){
+                    ans = "Saturday ";
+                }else{
+                    ans = "Sunday";
+                }
+                let sc = document.querySelector(".ai");
+                let scrz = document.querySelector(".ar");
+                sc.innerHTML = "Day of the week:"
+                scrz.innerHTML = ans.toString();
+            }else{
+                    alert("Форма заполнена некорректно");
+            }
+        }
+    </script>
+    <script>
+        function count(){
+            let formOK = true;
+            let form = document.forms.calcA; 
+            let elem = form.elements.one;
+            let dayA = Number(form.elements.dayA.value); 
+            let yearA = Number(form.elements.yearA.value);
+            let monthA = form.elements.monthA.value; 
+            if (isNaN(dayA))
+            {
+                    formOK = false; 
+                    form.elements.dayA.classList.add("error");
+            }
+            if (isNaN(yearA))
+            {
+                    formOK = false; 
+                    form.elements.yearA.classList.add("error");
+            }
+            // if (dayA.toString().length != 2){
+            //     formOK = false; 
+            //     form.elements.percSrok.classList.add("error"); 
+            // }
+            // if(yearA.toString().length != 4){
+            //     formOK = false; 
+            //     form.elements.percSrok.classList.add("error"); 
+            // }
+            if(yearA>2024){
+                formOK = false; 
+                form.elements.percSrok.classList.add("error"); 
+            }
+            let monthB;
+            if (monthA=="J"){
+                monthb = 0;
+            }else if(monthA=="F"){
+                monthB = 1;
+            }else if(monthA=="M"){
+                monthB = 2;
+            }else if(monthA=="A"){
+                monthB = 3;
+            }else if(monthA=="Ma"){
+                monthB = 4;
+            }else if(monthA=="Jn"){
+                monthB = 5;
+            }else if(monthA=="Jl"){
+                monthB = 6;
+            }else if(monthA=="Ag"){
+                monthB = 7;
+            }else if(monthA=="S"){
+                monthB = 8;
+            }else if(monthA=="O"){
+                monthB = 9;
+            }else if(monthA=="N"){
+                monthB = 10;
+            }else if(monthA=="D"){
+                monthB = 11;
+            }
+            if(formOK){
+                let date = new Date(yearA,monthB,dayA);
+                let dateN = new Date();
+                let r = dateN.getTime() - date.getTime();
+                const oneDay = 1000 * 60 * 60 * 24;
+                let ans = Math.round(r/oneDay-1);
+                let sc = document.querySelector(".ai");
+                let scrz = document.querySelector(".ar");
+                sc.innerHTML = "Days elapsed:"
+                scrz.innerHTML = ans.toString();
+            }else{
+                    alert("Форма заполнена некорректно");
+            }
+        }
+    </script>
+    <script>
+        function count3(){
+            let formOK = true;
+            let form = document.forms.calcA; 
+            let elem = form.elements.one;
+            let dayA = Number(form.elements.dayA.value); 
+            let yearA = Number(form.elements.yearA.value);
+            let monthA = form.elements.monthA.value; 
+            if (isNaN(dayA))
+            {
+                    formOK = false; 
+                    form.elements.dayA.classList.add("error");
+            }
+            if (isNaN(yearA))
+            {
+                    formOK = false; 
+                    form.elements.yearA.classList.add("error");
+            }
+            // if (dayA.toString().length != 2){
+            //     formOK = false; 
+            //     form.elements.percSrok.classList.add("error"); 
+            // }
+            // if(yearA.toString().length != 4){
+            //     formOK = false; 
+            //     form.elements.percSrok.classList.add("error"); 
+            // }
+            if(yearA>2024){
+                formOK = false; 
+                form.elements.percSrok.classList.add("error"); 
+            }
+            let monthB;
+            if (monthA=="J"){
+                monthb = 0;
+            }else if(monthA=="F"){
+                monthB = 1;
+            }else if(monthA=="M"){
+                monthB = 2;
+            }else if(monthA=="A"){
+                monthB = 3;
+            }else if(monthA=="Ma"){
+                monthB = 4;
+            }else if(monthA=="Jn"){
+                monthB = 5;
+            }else if(monthA=="Jl"){
+                monthB = 6;
+            }else if(monthA=="Ag"){
+                monthB = 7;
+            }else if(monthA=="S"){
+                monthB = 8;
+            }else if(monthA=="O"){
+                monthB = 9;
+            }else if(monthA=="N"){
+                monthB = 10;
+            }else if(monthA=="D"){
+                monthB = 11;
+            }
+            if(formOK){
+                let date = new Date(yearA,monthB,dayA);
+                let dateN = new Date();
+                let r = date.getTime() - dateN.getTime();
+                const oneDay = 1000 * 60 * 60 * 24;
+                let ans = Math.round(r/oneDay+1);
+                let sc = document.querySelector(".ai");
+                let scrz = document.querySelector(".ar");
+                sc.innerHTML = "Day ahead:"
+                scrz.innerHTML = ans.toString();
+            }else{
+                    alert("Форма заполнена некорректно");
+            }
+        }
+    </script>
+</body>
+</html>

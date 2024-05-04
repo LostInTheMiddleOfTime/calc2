@@ -1,0 +1,107 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+20+Charted&display=swap');
+    body{
+        background-color: rgb(27, 27, 27);
+        color: #1c2f23;
+        font-size: 30px;
+        font-family: "Jersey 10", sans-serif;
+    }
+    .c{
+        display: flex;
+        border-radius: 2.8vw;
+        height: 5vw;
+        width: (100%);
+        box-shadow: 3px 4px #5e6351;
+    }
+    input:focus,select:focus{
+    outline: none;
+    }
+    .month:hover{
+        background-color: #cdcaa2;
+    }
+    .day:hover{
+        background-color: #cdcaa2;
+        border-radius: 2.8vw 0 0 2.8vw;
+    }
+    .year:hover{
+        background-color: #cdcaa2;
+        border-radius: 0 2.8vw 2.8vw 0;
+    }
+    .day,.year,.month{
+        height: (100%);
+        padding-top: 0.5vw;
+        padding-right: 5%;
+        text-align: end;
+        font-family: "Jersey 10", sans-serif;
+    } 
+    .outW{
+        margin-top: 5vw;
+        border-radius: 2.8vw;
+        height: 15vw;
+        width: (100%);
+        background-color: #919576;
+        box-shadow: 3px 4px #5e6351;
+        padding-left: 3%;
+        padding-top: 2vw;
+    }
+    .ent{
+        max-height: 7vw;
+        width: 30%;
+        background-color: #b1b18e;
+        margin: 20px 0;
+        border-radius: 2.8vw;
+        text-align: center;
+        padding: 1vw;
+    }
+    .ent:hover{
+        background-color: #5f604d;
+    }
+    .day{
+        background-color: #f1ffd5;
+        border-radius: 2.8vw 0 0 2.8vw;
+        width: 30%;
+        border-right: 2px solid #5e6351;
+        font-size: 30px;
+    }
+    .year{
+        width: 30%;
+        border-left: 2px solid #5e6351;
+        border-radius: 0 2.8vw 2.8vw 0;
+        background-color: #f1ffd5;
+        font-size: 30px;
+    }
+    .month{
+        width: 40%;
+        background-color: #f1ffd5;
+        font-size: 30px;
+    }
+</style>
+
+<form name="calcA" class="c">
+    <input placeholder="Day (dd)" class="day" type="text" name="dayA">
+    <select class="month" name="monthA">
+        <option value="J">January</option>
+        <option value="F">February</option>
+        <option value="M">March</option>
+        <option value="A">April</option>
+        <option value="Ma">May</option>
+        <option value="Jn">June</option>
+        <option value="Jl">July</option>
+        <option value="Ag">August</option>
+        <option value="S">September</option>
+        <option value="O">October</option>
+        <option value="N">November</option>
+        <option value="D">December</option>
+    </select>
+    <input class="year" placeholder="Year (yyyy)" name="yearA"></input>
+</form> 
+<!-- <div class="inf">
+    <div style="width: 24%; ">Day</div>
+    <div style="width: 35%;">Month</div>
+    <div style="width: 20%;">Year</div>
+</div> -->
+<div class="ent" onclick="count2()">Enter</div>
+<div class="outW">
+    <div class="ai"></div>
+    <div class="ar"></div>
+</div>
